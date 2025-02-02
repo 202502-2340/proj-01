@@ -1,0 +1,40 @@
+{% load i18n %}
+{% load static %}
+
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8" >
+        <title>{% block title %}{% endblock %} | GT Movie Store</title>
+        <link rel="stylesheet" href="{% static 'base.css' %}">
+    </head>
+    <body>
+        {% block navbar %}
+        <h1>GT Movie Store</h1>
+        <ul class="menu">
+            {% if user.is_authenticated %}
+            <li>Home</li>
+            <li>Profile</li>
+            <li class="align-right">
+                <form method="post" action="{% url 'logout' %}">
+                    {% csrf_token %}
+                    <button type="submit">Logout</button>
+                </form>
+            </li>
+            <li class="align-right">{{ user.username }}</li>
+            {% else %}
+            <li><a href="{% url 'login' %}">Login</a></li>
+            {% endif %}
+        </ul>
+        {% endblock %}
+
+        {% block content %}
+        {% endblock %}
+
+        <div class="footer">
+            <p>This site is compatible with Internet Explorer 8.</p>
+        </div>
+        <!-- seriously, check your banking website's footer! -->
+    </body>
+</html>
+

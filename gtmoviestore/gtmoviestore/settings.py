@@ -118,7 +118,17 @@ USE_TZ = True
 
 STATIC_URL = 'static/'
 
+# TODO: fix this workaround
+STATICFILES_DIRS = (
+    os.path.join(BASE_DIR, 'gtmoviestore/static'),
+)
+
+
 # Default primary key field type
 # https://docs.djangoproject.com/en/5.1/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
+# redirect url
+# TODO: replace using reverse()
+LOGIN_REDIRECT_URL = '/'
